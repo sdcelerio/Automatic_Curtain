@@ -6,7 +6,7 @@
 #define PUL_PIN   4                 // Alternate between High and Low to take single steps
 #define NUM_ROTATIONS 18            // Number of rotations the motor will perform in open/close sequences
 #define LIGHT_SENSOR_PERIOD_SEC 1   // Number of secinds that the Arudino will poll the VEML7700 light sensor
-#define LUX_OPEN_THRESHOLD 500      // Lux level that will open the curtain when lux is above the given threshold
+#define LUX_OPEN_THRESHOLD 800      // Lux level that will open the curtain when lux is above the given threshold
 #define LUX_CLOSE_THRESHOLD 200     // Lux level that will close the curtain when lux is below the given threshold
 
 /* Global variables/flags */
@@ -15,9 +15,9 @@ float lux = 0;                                // Float indicating the light leve
 bool IsClosed = false;                        // Flag indicating open/close status
 
 /* Function declarations */
-void SetMotorZero();
-void OpenMotor();
-void CloseMotor();
+void SetMotor();      // Sets the motor to the leftmost position during set up
+void OpenMotor();     // Opens the curtain by moving the motor NUM_ROTATIONS in the counter clockwise direction
+void CloseMotor();    // Closes the curtain by moving the motor NUM_ROTATIONS in the clockwise direction
 
 void setup() {
   /* Initialize Serial BUS's */
@@ -39,7 +39,7 @@ void setup() {
   digitalWrite(DIR_PIN, LOW); // Starting Clockwise Direction
   pinMode(ENA_PIN, OUTPUT);
   digitalWrite(ENA_PIN, HIGH); // Turns on Stepper Motor Driver
-  SetMotorZero();
+  SetMotor();
 }
 
 void loop() {
@@ -64,7 +64,7 @@ void loop() {
 
 /* Function Definitions */
 // Motor Initialization Function
-void SetMotorZero() {
+void SetMotor() {
   IsClosed = false;
   Serial.println("Setting the Curtain to open and setting starting position");
   digitalWrite(DIR_PIN, LOW);
