@@ -6,7 +6,7 @@
 #define PUL_PIN   4                 // Alternate between High and Low to take single steps
 #define NUM_ROTATIONS 18            // Number of rotations the motor will perform in open/close sequences
 #define LIGHT_SENSOR_PERIOD_SEC 1   // Number of secinds that the Arudino will poll the VEML7700 light sensor
-#define LUX_OPEN_THRESHOLD 800      // Lux level that will open the curtain when lux is above the given threshold
+#define LUX_OPEN_THRESHOLD 500      // Lux level that will open the curtain when lux is above the given threshold
 #define LUX_CLOSE_THRESHOLD 200     // Lux level that will close the curtain when lux is below the given threshold
 
 /* Global variables/flags */
